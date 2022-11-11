@@ -46,9 +46,6 @@ After downloading source on your local machine, you can simply edit the HTML and
 ### Deployment
 Deploy on any web hosting server cloud/in site and enjoy 
 
-
-
-
 ## Authors
 
 👤 **Amen TETTEH**
