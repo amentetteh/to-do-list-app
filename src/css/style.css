@@ -1,0 +1,212 @@
+/* inter-regular - latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  src: url('https://fonts.googleapis.com/css?family=Inter');
+}
+
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+/* body settings */
+body {
+  background: #fff;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  flex: 1 1 auto;
+  align-items: center;
+}
+
+
+
+body #content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  flex: 1 1 auto;
+  width: 50%;
+  margin: auto;
+  box-shadow: 0px 2px 8px rgb(0 0 0 / 15%);
+}
+
+body #content h1 {
+ text-align: center;
+  width: 100%;
+  margin: auto;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+#content #list-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  flex: 1 1 auto;
+  width: 100%;
+  margin: auto;
+}
+
+#content #task-list-container {
+  background: transparent;
+}
+
+#content #list-content #entete {
+  height: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  flex: 1 1 auto;
+  align-items: center;
+/*   padding: 0 92px 0 46px;
+ */  height: 50px;
+  background: #fff;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+#content #list-content #entete h2 {
+  color: #545862;
+  font-size: 15px;
+  font-weight: 400;
+  padding: 1rem;
+  line-height: 20px;
+  margin: 0;
+  width: 100%;
+}
+
+#content #list-content .refresh,
+#content #list-content .home,
+#content #list-content .go-back {
+  width: 46px;
+  text-align: center;
+  cursor: pointer;
+  vertical-align: top;
+}
+
+#content #list-content .refresh .changes-count {
+  display: none;
+}
+
+#content #task-list-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  flex: 1 1 auto;
+  align-items: center;
+  width: 100%;
+  align-items: stretch;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+#content #task-list-container form{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex: 1 1 auto;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+#content #task-list-container form #new-item-field{
+  width: 100%;
+  padding: 0 40px 0 1rem;
+  line-height: 50px;
+  height: 50px;
+  border: none;
+  font-style: italic;
+}
+
+#content #task-list-container form .add-new-task {
+  line-height: 50px;
+  height: 50px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+#content #task-list-container form #new-item-field:hover{
+  border: transparent;
+  border-color: red;
+
+}
+
+#content #task-list-container button.clear-all-completed {
+  line-height: 50px;
+  height: 50px;
+  border: transparent; 
+}
+
+#content #task-list-container ul li {
+  list-style: none;
+}
+
+#list-content #task-list-container #tasks-list li.task-item {
+  display: flex;
+  justify-content:space-between;
+  align-content: center;
+  flex: 1 1 auto;
+  line-height: 50px;
+  height: 50px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+#list-content #task-list-container #tasks-list li.task-item .check-input {
+  margin-left: 15px;
+  margin-right: 11px;
+}
+
+#list-content #task-list-container #tasks-list li.task-item .completed {
+ display: none;
+}
+
+#list-content #task-list-container #tasks-list li.task-item .index {
+  display: none;
+}
+
+#list-content #task-list-container #tasks-list li.task-item .description {
+  align-self: center;
+  width: 100%;
+  border: 1px solid #fff;
+}
+
+
+#list-content #task-list-container #tasks-list li.task-item .description:hover {
+  border: 1px solid transparent;
+}
+
+#list-content #task-list-container #tasks-list li.task-item .vertical-3-dot {
+  line-height: 50px;
+  height: 50px;
+  margin-right: 11px;
+  margin-left: 7px;
+}
+
+
+
+#list-content #task-list-container #tasks-list li.task-item .description:selected {
+  border: 1px solid #fff;
+}
+
+
+
+
+
+/* .hello {
+  color: red;
+  background: url('../images/arrows-ccw.png');
+  background-size: 100% 100%;
+} */
