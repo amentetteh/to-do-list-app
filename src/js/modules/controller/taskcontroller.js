@@ -39,17 +39,6 @@ class TaskController {
     checkboxElement.name = 'completed';
 
     checkboxElement.checked = task.completed;
-    /* checkboxElement.addEventListener("change", (event) => {
-      TaskController.resetForRemove();
-      const newTask = new Task(task.index, task.description, task.completed);
-      console.log('**********************')
-      console.log(newTask)
-      if(newTask){
-        newTask.setCompleted(checkboxElement.checked);
-        console.log(newTask)
-      }
-
-    }); */
 
     descriptionElement.value = task.description;
     indexElement.innerText = task.index;
@@ -89,7 +78,6 @@ class TaskController {
 
     deleteIcon.addEventListener('click', () => {
       TaskController.removeTask(TaskController.taskList, task);
-      // TaskController.removeTaskFromUI(event.target)
     });
 
     taskRow.appendChild(taskForm);
@@ -125,12 +113,6 @@ class TaskController {
     newTask.remove();
     TaskController.resetDisplayTasks(table);
   };
-
-  /* static removeTaskFromUI = (item) => {
-    if (item.classList.contains("delete-icon")) {
-      item.parentElement.remove();
-    }
-  }; */
 
   static addTaskToUI = (table, task) => {
     table.appendChild(TaskController.createTaskRow(task));
