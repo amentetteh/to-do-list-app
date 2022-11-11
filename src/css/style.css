@@ -179,12 +179,10 @@ body #content h1 {
 
 #list-content #task-list-container #tasks-list li.task-item .delete-icon,
 #list-content #task-list-container #tasks-list li.task-item .vertical-3-dot {
-
   line-height: 50px;
   height: 50px;
   margin-right: 11px;
   margin-left: 7px;
-  margin: 5px  11px 7px;
   vertical-align: middle;
 }
 

@@ -1,6 +1,8 @@
-import Task from "../model/task.js";
+import Task from '../model/task.js';
 
 class TaskController {
+  static taskList = document.querySelector('#tasks-list');
+
   static createTag = (tagName, textContent = null, className = null) => {
     const tag = document.createElement(tagName);
     tag.textContent = textContent;
@@ -9,37 +11,35 @@ class TaskController {
   };
 
   static createTaskRow = (task) => {
-    console.log(task);
-    const taskRow = TaskController.createTag("li", null, "task-item");
-    const taskForm = TaskController.createTag("form", null, "task-form");
+    const taskRow = TaskController.createTag('li', null, 'task-item');
+    const taskForm = TaskController.createTag('form', null, 'task-form');
     const descriptionElement = TaskController.createTag(
-      "input",
+      'input',
       null,
-      "item description"
+      'item description',
     );
-    descriptionElement.type = "text";
-    descriptionElement.name = "description";
-    const indexElement = TaskController.createTag("div", null, "item index");
-    const completedElement = TaskController.createTag("div", null, "item completed");
+    descriptionElement.type = 'text';
+    descriptionElement.name = 'description';
+    const indexElement = TaskController.createTag('div', null, 'item index');
+    const completedElement = TaskController.createTag('div', null, 'item completed');
 
     const dragNdrop = TaskController.createTag(
-      "span",
+      'span',
       null,
-      "fas fa-ellipsis-v vertical-3-dot"
+      'fas fa-ellipsis-v vertical-3-dot',
     );
     const deleteIcon = TaskController.createTag(
-      "span",
+      'span',
       null,
-      "fa fa-trash-o delete-icon"
+      'fa fa-trash-o delete-icon',
     );
 
-    const checkboxElement = TaskController.createTag("input", null, "check-input");
-    checkboxElement.type = "checkbox";
-    checkboxElement.name = "completed";
+    const checkboxElement = TaskController.createTag('input', null, 'check-input');
+    checkboxElement.type = 'checkbox';
+    checkboxElement.name = 'completed';
 
-    console.log(task.completed);
     checkboxElement.checked = task.completed;
-    /*checkboxElement.addEventListener("change", (event) => {
+    /* checkboxElement.addEventListener("change", (event) => {
       TaskController.resetForRemove();
       const newTask = new Task(task.index, task.description, task.completed);
       console.log('**********************')
@@ -48,8 +48,8 @@ class TaskController {
         newTask.setCompleted(checkboxElement.checked);
         console.log(newTask)
       }
- 
-    });*/
+
+    }); */
 
     descriptionElement.value = task.description;
     indexElement.innerText = task.index;
@@ -66,31 +66,30 @@ class TaskController {
       taskForm.appendChild(rowItems[j]);
     }
 
-    taskForm.addEventListener("click", (event) => {
+    taskForm.addEventListener('click', () => {
       TaskController.resetForRemove();
-      taskRow.classList.toggle("editing");
-      dragNdrop.classList.toggle("hidden");
-      deleteIcon.classList.toggle("show");
+      taskRow.classList.toggle('editing');
+      dragNdrop.classList.toggle('hidden');
+      deleteIcon.classList.toggle('show');
     });
 
-    taskForm.addEventListener("submit", (event) => {
+    taskForm.addEventListener('submit', (event) => {
       event.preventDefault();
     });
 
-    descriptionElement.addEventListener("change", (event) => {
-     event.preventDefault();
-     console.log('CHAAAAAAAAAAAAAAAAAAAAANNNNNNNNNNNNNNNNNNNNNGGGGGGGGGGGGEEEEEEEEEEE')
-     const form=event.target.parentElement
-     const index =parseInt(form.getElementsByTagName('div')[0].innerText)
-     const description =form.description.value
-     const completed =(form.getElementsByTagName('div')[1].innerText==='true')
-     const task=new Task(index,description,completed)
-     task.save()
+    descriptionElement.addEventListener('change', (event) => {
+      event.preventDefault();
+      const form = event.target.parentElement;
+      const index = parseInt(form.getElementsByTagName('div')[0].innerText, 10);
+      const description = form.description.value;
+      const completed = (form.getElementsByTagName('div')[1].innerText === 'true');
+      const task = new Task(index, description, completed);
+      task.save();
     });
 
-    deleteIcon.addEventListener("click", (event) => {
-      TaskController.removeTask(task);
-      TaskController.removeTaskFromUI(event.target)
+    deleteIcon.addEventListener('click', () => {
+      TaskController.removeTask(TaskController.taskList, task);
+      // TaskController.removeTaskFromUI(event.target)
     });
 
     taskRow.appendChild(taskForm);
@@ -100,16 +99,16 @@ class TaskController {
   };
 
   static resetForRemove = () => {
-    document.querySelectorAll(".task-item").forEach((item) => {
-      item.classList.remove("editing");
+    document.querySelectorAll('.task-item').forEach((item) => {
+      item.classList.remove('editing');
     });
 
-    document.querySelectorAll(".vertical-3-dot").forEach((item) => {
-      item.classList.remove("hidden");
+    document.querySelectorAll('.vertical-3-dot').forEach((item) => {
+      item.classList.remove('hidden');
     });
 
-    document.querySelectorAll(".delete-icon").forEach((item) => {
-      item.classList.remove("show");
+    document.querySelectorAll('.delete-icon').forEach((item) => {
+      item.classList.remove('show');
     });
   };
 
@@ -121,39 +120,36 @@ class TaskController {
     }
   };
 
-  static resetSection = (sectionArray, classArray) => {
-    for (let i = 0; i < sectionArray.length; i += 1) {
-      for (let j = 0; j < classArray.length; j += 1) {
-        sectionArray[i].classList.remove(classArray[j]);
-      }
-    }
-  };
-
-
-  static removeTask = (task) => {
+  static removeTask = (table, task) => {
     const newTask = new Task(task.index, task.description, task.completed);
     newTask.remove();
+    TaskController.resetDisplayTasks(table);
   };
 
-  static removeTaskFromUI = (item) => {
+  /* static removeTaskFromUI = (item) => {
     if (item.classList.contains("delete-icon")) {
       item.parentElement.remove();
     }
+  }; */
+
+  static addTaskToUI = (table, task) => {
+    table.appendChild(TaskController.createTaskRow(task));
   };
 
-  static addTaskToUI = (table, book) => {
-    table.appendChild(TaskController.createTaskRow(book));
-  };
+  static resetDisplayTasks =(table) => {
+    table.innerHTML = '';
+    Task.updateIndexes();
+    TaskController.buildTaskList(table, Task.getAll());
+  }
 
-  //Implement a function for adding a new task (add a new element to the array).
+  // Implement a function for adding a new task (add a new element to the array).
   static addTask = (table, description) => {
     if (description) {
       const task = new Task(null, description, false);
-      console.log(task);
       task.add();
       TaskController.addTaskToUI(table, task);
 
-      document.querySelector("#new-item-field").value = "";
+      document.querySelector('#new-item-field').value = '';
     }
   };
 }
