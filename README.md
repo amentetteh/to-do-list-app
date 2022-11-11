@@ -33,7 +33,7 @@ To get a local copy up and running follow these simple example steps.
 
 Download sources from [Github](https://github.com/amentetteh/to-do-list-app.git) or throught the command: 
 ```
-git clone https://github.com/amentetteh/fintech-challenge-final-web-site.git
+git clone https://github.com/amentetteh/to-do-list-app.git
 
 ```
 
