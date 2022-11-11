@@ -1,4 +1,4 @@
-import Book from './model/task';
+// import Book from './model/task.js';
 
 class View {
   static createTag = (tagName, textContent = null, className = null) => {
@@ -17,9 +17,9 @@ class View {
     const indexElement = View.createTag('div', null, 'item index');
     const completedElement = View.createTag('div', null, 'item completed');
 
-    const dragNdro= View.createTag('div', null, 'fas fa-ellipsis-v pull-right vertical-3-dot'); 
+    const dragNdro = View.createTag('div', null, 'fas fa-ellipsis-v pull-right vertical-3-dot');
 
-    const checkboxElement = View.createTag('input',null,'check-input');
+    const checkboxElement = View.createTag('input', null, 'check-input');
     checkboxElement.type = 'checkbox';
     checkboxElement.name = 'name';
 
@@ -27,23 +27,22 @@ class View {
     // checkboxElement.addEventListener('change', (event) => {
     //   console.log('CHECKKEEEEEEEEEEEEEEEEDDDDDDDDDDDDDDDDDDDDDD')
     // });
-   
 
-/*     taskForm.addEventListener('change', (event) => {
+    /*     taskForm.addEventListener('change', (event) => {
       console.log('CHECKKEEEEEEEEEEEEEEEEDDDDDDDDDDDDDDDDDDDDDD')
     }); */
-   
+
     descriptionElement.value = task.description;
     indexElement.innerText = task.index;
     completedElement.innerText = task.completed;
 
-    const rowItems = [checkboxElement,descriptionElement, indexElement, completedElement];
+    const rowItems = [checkboxElement, descriptionElement, indexElement, completedElement];
 
     for (let j = 0; j < rowItems.length; j += 1) {
       taskForm.appendChild(rowItems[j]);
     }
-    taskRow.appendChild(taskForm)
-    taskRow.appendChild(dragNdro)
+    taskRow.appendChild(taskForm);
+    taskRow.appendChild(dragNdro);
     return taskRow;
   };
 
