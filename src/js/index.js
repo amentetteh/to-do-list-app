@@ -1,5 +1,6 @@
 import '../css/style.css';
 import TaskController from './modules/controller/taskcontroller.js';
+import StatusController from './modules/controller/statuscontroller.js';
 import Task from './modules/model/task.js';
 
 // Add a new task
@@ -14,6 +15,12 @@ document
       TaskController.addTask(taskList, desc);
     }
   });
+
+  
+  document.querySelector('.clear-all-completed').addEventListener('click', () => {
+    TaskController.removeAllCompletedTask(taskList) 
+  });
+
 
 if (Task.count() > 0) {
   document.addEventListener('DOMContentLoaded', () => {
