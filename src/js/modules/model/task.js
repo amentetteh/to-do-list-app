@@ -53,12 +53,11 @@ class Task {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
 
+  static deleteAllByStatus(status) {
+    const tasks = Task.getAll('ASC');
+    localStorage.setItem('tasks', JSON.stringify(tasks.filter((task) => task.completed !== status)));
+  }
 
-  static deleteAllByStatus(status){
-      const tasks = Task.getAll('ASC');
-      localStorage.setItem('tasks', JSON.stringify(tasks.filter((task) => task.completed!==status)));
-    }
- 
   save() {
     const tasks = Task.getAll();
     tasks[this.index].description = this.description;

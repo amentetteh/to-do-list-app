@@ -67,15 +67,15 @@ class TaskController {
       event.preventDefault();
     });
 
-    checkboxElement.addEventListener("change", (event) => {
+    checkboxElement.addEventListener('change', (event) => {
       TaskController.resetForRemove();
       const form = event.target.parentElement;
       const index = parseInt(form.getElementsByTagName('div')[0].innerText, 10);
       const description = form.description.value;
       const completed = (form.getElementsByTagName('div')[1].innerText === 'true');
-      const newTask = new Task(index,description,completed)
-      StatusController.updateStatus(newTask,checkboxElement.checked)
-    })
+      const newTask = new Task(index, description, completed);
+      StatusController.updateStatus(newTask, checkboxElement.checked);
+    });
 
     descriptionElement.addEventListener('change', (event) => {
       event.preventDefault();
@@ -126,7 +126,7 @@ class TaskController {
   };
 
   static removeAllCompletedTask = (table) => {
-    Task.deleteAllByStatus(true)
+    Task.deleteAllByStatus(true);
     TaskController.resetDisplayTasks(table);
   };
 

@@ -1,21 +1,14 @@
 import Task from '../model/task.js';
-import TaskController from './taskcontroller.js';
 
 class StatusController {
   static taskList = document.querySelector('#tasks-list');
 
- 
-  static updateStatus = (task,status)=>{
-      const newTask = new Task(task.index, task.description, task.completed);
-      if(newTask){
-        newTask.setCompleted(status);
-      }
+  static updateStatus = (task, status) => {
+    const newTask = new Task(task.index, task.description, task.completed);
+    if (newTask) {
+      newTask.setCompleted(status);
     }
-
-    
-
-
-
+  }
 }
 
 export default StatusController;
