@@ -146,13 +146,9 @@ class TaskController {
       const task = new Task(null, description, false);
       task.add();
       TaskController.addTaskToUI(table, task);
-
       document.querySelector('#new-item-field').value = '';
     }
   };
-
-
-
 }
 
 export default TaskController;
