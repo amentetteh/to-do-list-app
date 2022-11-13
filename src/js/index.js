@@ -15,6 +15,10 @@ document
     }
   });
 
+document.querySelector('.clear-all-completed').addEventListener('click', () => {
+  TaskController.removeAllCompletedTask(taskList);
+});
+
 if (Task.count() > 0) {
   document.addEventListener('DOMContentLoaded', () => {
     const isDataOrdered = localStorage.getItem('isDataOrdered') || true;

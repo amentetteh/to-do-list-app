@@ -1,4 +1,5 @@
 import Task from '../model/task.js';
+import StatusController from './statuscontroller.js';
 
 class TaskController {
   static taskList = document.querySelector('#tasks-list');
@@ -66,6 +67,16 @@ class TaskController {
       event.preventDefault();
     });
 
+    checkboxElement.addEventListener('change', (event) => {
+      TaskController.resetForRemove();
+      const form = event.target.parentElement;
+      const index = parseInt(form.getElementsByTagName('div')[0].innerText, 10);
+      const description = form.description.value;
+      const completed = (form.getElementsByTagName('div')[1].innerText === 'true');
+      const newTask = new Task(index, description, completed);
+      StatusController.updateStatus(newTask, checkboxElement.checked);
+    });
+
     descriptionElement.addEventListener('change', (event) => {
       event.preventDefault();
       const form = event.target.parentElement;
@@ -114,6 +125,11 @@ class TaskController {
     TaskController.resetDisplayTasks(table);
   };
 
+  static removeAllCompletedTask = (table) => {
+    Task.deleteAllByStatus(true);
+    TaskController.resetDisplayTasks(table);
+  };
+
   static addTaskToUI = (table, task) => {
     table.appendChild(TaskController.createTaskRow(task));
   };
@@ -130,7 +146,6 @@ class TaskController {
       const task = new Task(null, description, false);
       task.add();
       TaskController.addTaskToUI(table, task);
-
       document.querySelector('#new-item-field').value = '';
     }
   };
