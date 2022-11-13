@@ -2,9 +2,9 @@
 
 ## Project Steps
 
-- [x] Project 1: List structure.
-- [ ] Project 2: Interactive list.
-- [ ] Project 3: Add and remove items.
+- [x] Project 1: List structure. 
+- [ ] Project 2: Add and remove items.
+- [ ] Project 3: Interactive list.
 
 ## Built With
 
